@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive map with Leaflet</title>
+    <link rel="icon" href="data:;base64,iVBORwOKGO=" />
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	
+	
+	<body oncontextmenu="return false;">
+        <p><l> Map Color Options: </l>
+        <button onclick="updateColor('year')">Year</button>
+        <button onclick="updateColor('day of year')">Time Into Year</button>
+        <button onclick="updateColor('phylum')">Phylum</button>
+        
+        </p>
+
+		<div class="wrapper">
+			<div id="my-map" class="map">
+                <div id="map-legend" class="map-legend"></div>
+            </div>
+			<!-- Create a div where the graph will take place -->
+            <svg id="tree"></svg>
+		</div>
+        
+	</body>
+	    
+    <div class="item1">
+        <svg id="timeline"></svg>
+        <button class="reset-button" type="button" onclick="resetTimeline()">Reset</button>
+    </div>
+
+    <br>
+    <div class="aligned-section">
+        <!-- "When in the year" -->
+        <svg id="bar1"></svg>
+
+        <!-- Number of specimens per class -->
+        <svg id="bar2"></svg>
+
+        <!-- Person who collected specimen -->
+        <svg id="bar3"></svg>
+
+        <svg id="stacked-bar"></svg>
+    </div>
+
+    
+    <div class="title-div">
+        <p class="page-footer">Authors: Samuel Scherer, Jennifer Gutmann, Joe Russel. Dataset: UC Herbarium, 2022 - https://herbariumcinc.com/</p>
+        <h class="page-title">UC Herbarium Specimen Collection Data Visualization</h>
+        
+    </div>
+
+
+    
+    <script src="js/d3.v6.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-array.v2.min.js"></script>
+	<script src="js/d3-legend.min.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/barChart.js"></script>
+    <script src="js/tree.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/leafletMap.js"></script>
+    <script src="js/timeline.js"></script>
+    <script src="js/stackedBar.js"></script>
+	<script src="js/Map.SelectArea.min.js"></script>
+
+    <div id="tooltip"></div>
+
+
+</body>
+</html>
