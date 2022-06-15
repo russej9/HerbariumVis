@@ -124,7 +124,7 @@ function UpdateAllCharts(data = null) {
   missingData.data = data;
   missingData.updateVis();
   timeline.data = getTimelineData(data);
-  timeline.updateVis();
+  timeline.filterVis();
   leafletMap.data = data;
   leafletMap.updateVis();
   tree.updateVis(data, 0, 1);

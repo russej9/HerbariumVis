@@ -124,6 +124,45 @@ class Timeline {
 
   }
 
+  filterVis() {
+    let vis = this;
+
+    vis.brushedData = vis.data;
+    
+    //vis.xScale.domain(vis.data.map(d=>d.year));
+    //vis.xAxisG.tickValues(vis.xScale.domain().filter(function(d,i){ return !((d)%5)}));
+
+    //vis.chart.selectAll(".xAxis").call(vis.xAxisG);
+
+    console.log(d3.max(vis.data.map(o => o.count)));
+
+    vis.yScale.domain([0, d3.max(vis.data.map(o => o.count))]);
+    vis.chart.selectAll(".yAxis").transition().duration(1000).call(vis.yAxisG);
+
+    vis.rects = vis.chart.selectAll(".bar")
+      .data(vis.data)
+      .join("rect")
+        .attr("class", "bar")
+        .attr("x", d=>vis.xScale(d.year))
+        .attr("y", d=>vis.yScale(d.count))
+        .attr("width", vis.xScale.bandwidth())
+        .attr("height", d=> vis.height - vis.yScale(d.count))
+        .attr("fill", "#80b1d3")
+      .on('mouseover', (event,d) => {
+        console.log(d);
+        d3.select('#tooltip')
+            .style('display', 'block')
+            .style('left', (event.pageX + 10) + 'px')   
+            .style('top', (event.pageY + 10) + 'px')
+            .html(`<div class="tooltip"><strong>${d.year}</strong> - ${d.count} samples</div>`);
+        })
+        .on('mouseleave', () => {
+          d3.select('#tooltip').style('display', 'none');
+        }); 
+
+
+  }
+
   brushed(selection) { 
   	let vis = this;
 
