@@ -67,12 +67,16 @@ class LeafletMap {
 		  "Street Map": OpenStreetMap_Mapnik,
 		  "Stamen Terrain": Stamen_Terrain
 	};
+	
+	var bounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180));
 
     vis.theMap = L.map('my-map', {
       center: [30, 0],
       zoom: 2,
       layers: [vis.base_layer],
-	  selectArea: true
+	  selectArea: true,
+	  maxBounds: bounds,
+	  maxBoundsViscosity: 1.0
     });
 	
 	vis.theMap.on('areaselected', (e) => {
@@ -93,8 +97,8 @@ class LeafletMap {
 		.interpolator(d3.interpolateOranges)
 		.domain(d3.extent(vis.data, d => d.startDayOfYear));
 	
-	vis.colorScaleClass = d3.scaleOrdinal()
-		.domain(new Set(vis.data.map(d => d.phylum)))
+	vis.colorScaleKingdom = d3.scaleOrdinal()
+		.domain(new Set(vis.data.map(d => d.kingdom)))
 		.range(d3.schemeAccent);
 
 	vis.currentColorScale = vis.colorScaleYear;
@@ -117,8 +121,8 @@ class LeafletMap {
 								case 'day of year':
 									return vis.colorScaleStartDay(d.startDayOfYear);
 									break;
-								case 'phylum':
-									return vis.colorScaleClass(d.phylum);
+								case 'kingdom':
+									return vis.colorScaleKingdom(d.kingdom);
 									break;
 								default:
 									console.log('the fuck you doing');
@@ -167,8 +171,8 @@ class LeafletMap {
 										case 'day of year':
 											return vis.colorScaleStartDay(d.startDayOfYear);
 											break;
-										case 'phylum':
-											return vis.colorScaleClass(d.phylum);
+										case 'kingdom':
+											return vis.colorScaleKingdom(d.kingdom);
 											break;
 										default:
 											console.log('the fuck you doing');
@@ -198,7 +202,8 @@ class LeafletMap {
 		.shape("path", d3.symbol().type(d3.symbolCircle).size(150))
 		.shapePadding(10)
 		.scale(vis.currentColorScale)
-		.cellFilter(function(d){ return d.label !== '' });
+		.cellFilter(function(d){ return d.label !== '' })
+		.labelFormat("0.0f");
 		
 	vis.svg2.select('.legend')
 		.call(vis.legendClass);
@@ -245,9 +250,9 @@ class LeafletMap {
 		{
 			vis.currentColorScale = vis.colorScaleStartDay;
 		}
-		else if (newColorScale == 'phylum')
+		else if (newColorScale == 'kingdom')
 		{
-			vis.currentColorScale = vis.colorScaleClass;
+			vis.currentColorScale = vis.colorScaleKingdom;
 		}
 		vis.svg2.select('.legend').remove();
 		vis.svg2.append("g")
@@ -258,7 +263,8 @@ class LeafletMap {
 			.shape("path", d3.symbol().type(d3.symbolCircle).size(150))
 			.shapePadding(10)
 			.scale(vis.currentColorScale)
-			.cellFilter(function(d){ return d.label !== '' });
+			.cellFilter(function(d){ return d.label !== '' })
+			.labelFormat("0.0f");
 		vis.svg2.select('.legend')
 			.call(vis.legendClass);
 	}
@@ -287,8 +293,8 @@ class LeafletMap {
 								case 'day of year':
 									return vis.colorScaleStartDay(d.startDayOfYear);
 									break;
-								case 'phylum':
-									return vis.colorScaleClass(d.phylum);
+								case 'kingdom':
+									return vis.colorScaleKingdom(d.kingdom);
 									break;
 								default:
 									console.log('the fuck you doing');
@@ -337,8 +343,8 @@ class LeafletMap {
 										case 'day of year':
 											return vis.colorScaleStartDay(d.startDayOfYear);
 											break;
-										case 'phylum':
-											return vis.colorScaleClass(d.phylum);
+										case 'kingdom':
+											return vis.colorScaleKingdom(d.kingdom);
 											break;
 										default:
 											console.log('the fuck you doing');
