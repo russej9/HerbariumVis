@@ -77,7 +77,6 @@ d3.csv('data/occurrences.csv')
             tree.updateVis(filteredData, 0, 1);
           }
         });
-
     
   })
   .catch(error => console.error(error));
@@ -130,4 +129,49 @@ function UpdateAllCharts(data = null) {
   tree.updateVis(data, 0, 1);
   filteredData = data;
 
+}
+
+function convertArray2CSV()
+{
+	var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+	data = filteredData;
+	columnDelimiter = ',';
+	lineDelimiter = '\n';
+	keys = Object.keys(data[0]);
+	result = '';
+	result += keys.join(columnDelimiter);
+	result += lineDelimiter;
+	data.forEach(function(item) {
+		ctr = 0;
+		keys.forEach(function(key) {
+			if (ctr > 0) result += columnDelimiter;
+			if (item[key] == 'Imajeki, R.') console.log(item);
+			result += '"' + item[key] + '"';
+			ctr++;
+		});
+	
+	result += lineDelimiter;
+	});
+	
+	return result;
+	
+}
+
+function downloadCSV()
+{
+	var data, filename, link;
+	var csv = convertArray2CSV();
+	if (csv == null) return;
+	filename = 'UCHerbariumData.csv';
+	
+	if (!csv.match(/^data:text\/csv/i)) {
+		csv = 'data:text/csv;charset=utf-8,' + csv;
+	}
+	data = encodeURI(csv);
+	
+	link = document.createElement('a');
+	link.setAttribute('href', data);
+	link.setAttribute('download', filename);
+	link.click();
+	
 }
