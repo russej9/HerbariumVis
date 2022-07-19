@@ -159,6 +159,7 @@ class Tree {
       let vis = this;
 
       console.log(filteredData);
+      //UpdateAllCharts(filteredData);
 
       if (parent_el == 0) {vis.data = filteredData};
 
