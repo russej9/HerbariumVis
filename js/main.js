@@ -115,7 +115,7 @@ function resetTimeline(){
 
 }
 
-function UpdateAllCharts(data = null) {
+function UpdateAllCharts(data = null, treeBool = true) {
   UpdateBarCharts(data);
   if (data == null) {
     data = allData
@@ -126,7 +126,9 @@ function UpdateAllCharts(data = null) {
   timeline.filterVis();
   leafletMap.data = data;
   leafletMap.updateVis();
-  tree.updateVis(data, 0, 1);
+  if (treeBool) {
+    tree.updateVis(data, 0, 1);
+  }
   filteredData = data;
 
 }
