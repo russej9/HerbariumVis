@@ -190,7 +190,7 @@ class Timeline {
     vis.rects
       .data(vis.brushedData)
       .join("rect")
-      .transition().duration(1000)
+      //.transition().duration(1000) // THIS WAS COMMENTED OUT BECAUSE THE TRANSITION LOOKED WRONG AND I CANT FIGURE OUT WHAT WAS CHANGED
         .attr("x", d=>vis.xScale(d.year))
         .attr("y", d=>vis.yScale(d.count))
         .attr("width", vis.xScale.bandwidth())
