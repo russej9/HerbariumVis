@@ -24,7 +24,7 @@ class LeafletMap {
 	vis.svg2 = d3.select(vis.config.legendElement).append('svg')
 		.attr('width', 150)
 		.attr('height', 250)
-		.style('background', 'white');
+		.style('background', '#f2e9d8');
 	
     //ESRI
     vis.esriUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
@@ -90,16 +90,16 @@ class LeafletMap {
 	vis.colorType = 'year'; //this is used to determine how to color the map using the different color scales
 	
 	vis.colorScaleYear = d3.scaleSequential()
-		.interpolator(d3.interpolateViridis)
+		.interpolator(d3.interpolateBrBG)
 		.domain(d3.extent(vis.data, d => d.year));
 		
 	vis.colorScaleStartDay = d3.scaleSequential()
-		.interpolator(d3.interpolateOranges)
+		.interpolator(d3.interpolateGreens)
 		.domain(d3.extent(vis.data, d => d.startDayOfYear));
 	
 	vis.colorScaleKingdom = d3.scaleOrdinal()
 		.domain(new Set(vis.data.map(d => d.kingdom)))
-		.range(d3.schemeAccent);
+		.range(["#4c8260","#523410", "#296360", "#242527", "#71b0a8", "#86c17f", "#c7a362", "#eff1eb"]);
 
 	vis.currentColorScale = vis.colorScaleYear;
 

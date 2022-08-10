@@ -19,8 +19,8 @@ class Tree {
     initVis() {
       let vis = this;
       
-      vis.colors = ["#8dd3c7","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f"];
-  
+      vis.colors = ["#4c8260", "#294a52", "#242527", "#3f7b62", "#272c30", "#357363", "#2a333a", "#2d6b62", "#2a3a43", "#296360", "#2a424b","#275a5d","#275258"];
+
       vis.width = vis.config.containerWidth - vis.config.margin.left - vis.config.margin.right;
       vis.height = vis.config.containerHeight - vis.config.margin.top - vis.config.margin.bottom;
   
@@ -230,7 +230,7 @@ class Tree {
           .attr('y', function (d) { return d.y0; })
           .attr('width', function (d) { return d.x1 - d.x0; })
           .attr('height', function (d) { return d.y1 - d.y0; })
-          .attr("fill", function(d,i) {return(vis.colors[i%11])});
+          .attr("fill", function(d,i) {return(vis.colors[i%13])});
 
 
       vis.labels = vis.chart.selectAll(".labels")
