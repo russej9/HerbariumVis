@@ -32,7 +32,7 @@ class BarChart {
   initVis() {
     let vis = this;
 
-    vis.colors = ["#4c8260","#355b4d","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f"];
+    vis.colors = ["#4c8260","#355b4d","#4c6882","#56824c","#3c5b35","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f"];
 
     vis.width = vis.config.containerWidth - vis.config.margin.left - vis.config.margin.right;
     vis.height = vis.config.containerHeight - vis.config.margin.top - vis.config.margin.bottom;
