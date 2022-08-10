@@ -158,6 +158,9 @@ class Tree {
     updateVis(filteredData, parent_el, child_el) {
       let vis = this;
 
+      console.log(filteredData);
+      UpdateAllCharts(filteredData, false);
+
       if (parent_el == 0) {vis.data = filteredData};
 
       let groupedData = d3.group(filteredData, d=>d[hierarchy[child_el]]);
