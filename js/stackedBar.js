@@ -49,7 +49,7 @@ class stackedBar {
 
    	vis.color = d3.scaleOrdinal()
    		.domain(['with', 'without'])
-   		.range(["#fb8072","#80b1d3"]);
+   		.range(["#4c8260","#242527"]);
 
    	// this is from barChart.js - want same formatting as Sam's bar charts
    	vis.svg.append("g")
